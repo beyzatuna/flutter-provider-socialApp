@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "615230523314",
+    "firebase_url": "https://test-e6741-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "test-e6741",
+    "storage_bucket": "test-e6741.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615230523314:android:23ae92789b8b0df97d86ab",
+        "android_client_info": {
+          "package_name": "com.example.provider_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKkv6YHgd4mvpF0BITOOblTCUcsAhaPFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
