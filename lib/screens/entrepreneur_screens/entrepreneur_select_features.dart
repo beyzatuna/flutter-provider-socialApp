@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_project/providers/entrepreneur_providers/entrepreneur_selection_provider.dart';
 
-
 class EntrepreneurSelectFeatures extends StatefulWidget {
   final String userId;
 
@@ -11,15 +10,12 @@ class EntrepreneurSelectFeatures extends StatefulWidget {
   @override
   _EntrepreneurSelectFeaturesState createState() =>
       _EntrepreneurSelectFeaturesState();
-     
 }
 
 class _EntrepreneurSelectFeaturesState
     extends State<EntrepreneurSelectFeatures> {
   List<String> fields = ["product", "sales_marketing", "design", "operation", "engineering"];
   List<String> entrepreneurFeatures = ["creative", "challenger", "leader", "problem-solver", "entrepreneur-spirit", "risk-strategist", "patient", "team-player", "professional", "adaptation-expert"];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,7 @@ class _EntrepreneurSelectFeaturesState
                               .toggleFieldSelection(value);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Provider.of<EntrepreneurSelectionProvider>(context)
+                          backgroundColor: Provider.of<EntrepreneurSelectionProvider>(context)
                                   .selectedFields
                                   .contains(value)
                               ? Colors.blue
@@ -71,7 +67,7 @@ class _EntrepreneurSelectFeaturesState
                               .toggleFeatureSelection(value);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Provider.of<EntrepreneurSelectionProvider>(context)
+                          backgroundColor: Provider.of<EntrepreneurSelectionProvider>(context)
                                   .selectedFeatures
                                   .contains(value)
                               ? Colors.blue
@@ -83,8 +79,6 @@ class _EntrepreneurSelectFeaturesState
                 ],
               ),
               const SizedBox(height: 20),
-
-
               ElevatedButton(
                 onPressed: () async {
                   // Access selected fields and features using the provider

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider_project/providers/entrepreneur_providers/entrepreneur_profile_provider.dart';
 import 'package:provider_project/screens/entrepreneur_screens/entrepreneur_edit_startup_data.dart';
 import 'package:provider_project/screens/entrepreneur_screens/entrepreneur_edit_user_data.dart';
 import 'package:provider_project/screens/entrepreneur_screens/entrepreneur_improvement_page.dart';
 import 'package:provider_project/screens/common_screens/user_search_page.dart';
+import 'package:provider_project/screens/auth_screens/login_screen.dart';
 
 class EntrepreneurProfilePage extends StatefulWidget {
   final String userId;
@@ -131,6 +133,17 @@ class _EntrepreneurProfilePageState extends State<EntrepreneurProfilePage> {
               },
             ),
             // Add more ListTile items as needed
+            const Spacer(),
+            ListTile(
+              title: const Text('Logout'),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+            ),
           ],
         ),
       ),

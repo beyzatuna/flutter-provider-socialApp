@@ -10,13 +10,11 @@ class EditEntrepreneurDataPage extends StatefulWidget {
   final String userId;
   final Map<String, dynamic> userData;
 
-
   EditEntrepreneurDataPage({super.key, required this.userId, required this.userData});
 
   @override
   _EditEntrepreneurDataPageState createState() => _EditEntrepreneurDataPageState();
 }
-
 
 class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
   TextEditingController usernameController = TextEditingController();
@@ -33,21 +31,21 @@ class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
   void initState() {
     super.initState();
 
-     // Initialize controllers with existing data
-  usernameController.text = widget.userData['username'] ?? '';
-  nameSurnameController.text = widget.userData['name'] ?? '';
-  locationController.text = widget.userData['location'] ?? '';
+    // Initialize controllers with existing data
+    usernameController.text = widget.userData['username'] ?? '';
+    nameSurnameController.text = widget.userData['name'] ?? '';
+    locationController.text = widget.userData['location'] ?? '';
 
-  // Check if 'fields' key exists in userData
-  if (widget.userData.containsKey('fields')) {
-    selectedFields = List<String>.from(widget.userData['fields']);
-  }
+    // Check if 'fields' key exists in userData
+    if (widget.userData.containsKey('fields')) {
+      selectedFields = List<String>.from(widget.userData['fields']);
+    }
 
-  // Check if 'entrepreneurFeatures' key exists in userData
-  if (widget.userData.containsKey('entrepreneurFeatures')) {
-    selectedFeatures = List<String>.from(widget.userData['entrepreneurFeatures']);
+    // Check if 'entrepreneurFeatures' key exists in userData
+    if (widget.userData.containsKey('entrepreneurFeatures')) {
+      selectedFeatures = List<String>.from(widget.userData['entrepreneurFeatures']);
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +88,7 @@ class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: selectedFields.contains(value) ? Colors.blue : Colors.grey,
+                            backgroundColor: selectedFields.contains(value) ? Colors.blue : Colors.grey,
                           ),
                           child: Text(value),
                         ),
@@ -111,7 +109,7 @@ class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: selectedFeatures.contains(value) ? Colors.blue : Colors.grey,
+                            backgroundColor: selectedFeatures.contains(value) ? Colors.blue : Colors.grey,
                           ),
                           child: Text(value),
                         ),
@@ -123,27 +121,22 @@ class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-
                 bool isUsernameUnique = await Provider.of<UserProvider>(context, listen: false)
-              .isUsernameUnique(usernameController.text.trim());      
-               if (isUsernameUnique) {
-
-                await Provider.of<EditEntrepreneurDataProvider>(context, listen: false)
-                  .updateEntrepreneurDataToFirestore(
-                  context,
-                  nameSurnameController.text,
-                  usernameController.text,
-                  locationController.text,
-                  selectedFeatures,
-                  selectedFields,
-
-                  
-                );
-                Navigator.pop(context, true);
-
-              }else{
-                 print('Username is not unique');
-              }
+                    .isUsernameUnique(usernameController.text.trim());
+                if (isUsernameUnique) {
+                  await Provider.of<EditEntrepreneurDataProvider>(context, listen: false)
+                      .updateEntrepreneurDataToFirestore(
+                    context,
+                    nameSurnameController.text,
+                    usernameController.text,
+                    locationController.text,
+                    selectedFeatures,
+                    selectedFields,
+                  );
+                  Navigator.pop(context, true);
+                } else {
+                  print('Username is not unique');
+                }
               },
               child: const Text('Save Changes'),
             ),
@@ -153,20 +146,19 @@ class _EditEntrepreneurDataPageState extends State<EditEntrepreneurDataPage> {
     );
   }
 
- void toggleFieldSelection(String value) {
+  void toggleFieldSelection(String value) {
     if (selectedFields.contains(value)) {
       selectedFields.remove(value);
     } else {
       selectedFields.add(value);
     }
- }
+  }
 
- void toggleFeatureSelection(String value) {
+  void toggleFeatureSelection(String value) {
     if (selectedFeatures.contains(value)) {
       selectedFeatures.remove(value);
     } else {
       selectedFeatures.add(value);
     }
-    
   }
 }
