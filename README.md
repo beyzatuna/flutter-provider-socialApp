@@ -27,6 +27,7 @@ This is a social app developed using Flutter, Firebase, and Provider architectur
 
 ## Screenshots
 
+![Untitled (1)](https://github.com/beyzatuna/flutter-provider-socialApp/assets/54098270/d782078b-b9c5-4888-ba30-ef5495f915af)
 
 
 ## Getting Started
